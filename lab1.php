@@ -14,6 +14,9 @@ if(isset($_POST['btn_save'])){
   if($res){
     echo "Save operation was successful";
   }
+  else {
+    echo "An error occured";
+  }
 }
 
 ?>
