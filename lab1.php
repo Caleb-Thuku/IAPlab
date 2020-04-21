@@ -1,3 +1,24 @@
+<?php
+include_once 'DBConnector.php';
+include_once 'user.php';
+$con = new DBConnector;
+
+if(isset($_POST['btn_save'])){
+  $first_name = $_POST['first_name'];
+  $last_name = $_POST['last_name'];
+  $city = $_POST['city_name'];
+
+  $user = new User($first_name,$last_name,$city);
+  $res = $user->save();
+
+  if($res){
+    echo "Save operation was successful";
+  }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
