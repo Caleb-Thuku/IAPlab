@@ -29,7 +29,7 @@ if(isset($_POST['btn_save'])){
     <title></title>
   </head>
   <body>
-    <form action="index.html" method="post">
+    <form action="" method="post">
       <table align = "center">
         <tr>
           <td> <input type="text" name="first_name" placeholder="First Name" value=""> </td>
@@ -41,7 +41,7 @@ if(isset($_POST['btn_save'])){
           <td><input type="text" name="city_name" placeholder="City"value=""></td>
         </tr>
         <tr>
-          <td> <button type="submit" name="btn-save">SAVE</button> </td>
+          <td> <input type="submit" name="btn-save" value="SAVE"></td>
         </tr>
       </table>
     </form>
