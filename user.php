@@ -1,55 +1,60 @@
 <?php
-include "Crud.php";
-/**
- *
- */
-class User implements Crud
-{
-  private $user_id;
-  private $first_name;
-  private $last_name;
-  private $city_name;
+	include "Crud.php";
+	include "DBConnector.php";
 
-  function __construct($first_name,$last_name,$city_name){
-    // code...
-    $this->first_name = $first_name;
-    $this->last_name = $last_name;
-    $this->city_name = $city_name;
-  }
-  public function setUserId($user_id){
-    $this->user_id = $user_id;
-  }
-  public function getUserId(){
-    return $this->$user_id;
-  }
+	class User implements Crud{
+		private $user_id;
+		private $first_name;
+		private $last_name;
+		private $city_name;
 
-  public function save(){
-    $fn = $this->first_name;
-    $ln = $this->last_name;
-    $city = $this->city_name;
-    $res = mysql_query("INSERT INTO user(first_name,last_name,user_city) VALUES('fn','ln','city')") or die("Error ".mysql_error());
-    return $res;
-  }
-  public function readAll(){
-    return null;
-  }
-  public function readUnique(){
-    return null;
-  }
-  public function search(){
-    return null;
-  }
-  public function update(){
-    return null;
-  }
-  public function removeOne(){
-    return null;
-  }
-  public function removeAll(){
-    return null;
-  }
-}
+		//We can use the class constructor to initialize our values member variables can't be instantiated from elsewhere; they're private
 
+		function __construct($first_name,$last_name,$city_name){
+			$this -> first_name = $first_name;
+			$this -> last_name = $last_name;
+			$this -> city_name = $city_name;
+		}
 
+		//user id setter
+		public function setUserId($user_id){
+			$this -> user_id = $user_id;
+		}
 
- ?>
+		//user id getter
+		public function getUserId()	{
+			return $this -> $user_id;
+		}
+
+		public function save(){
+			$fn = $this->first_name;
+			$ln=$this->last_name;
+			$city=$this->city_name;
+			$conn =new DBConnector;
+			$result = mysqli_query($conn->conn,"INSERT INTO user(first_name,last_name,user_city) VALUES ('$fn','$ln','$city')") or die ("Error" .mysql_error());
+			return $result;
+		}
+
+		public function readAll(){
+			$conn =new DBConnector;
+      $query = mysqli_query($conn->conn,"SELECT * FROM user") or die ("Error" .mysql_error());
+			return $query;
+		}
+		public function readUnique(){
+			return null;
+		}
+		public function search(){
+			return null;
+		}
+		public function update(){
+			return null;
+		}
+		public function removeOne(){
+			return null;
+		}
+		public function removeAll(){
+			return null;
+		}
+
+	}
+?>

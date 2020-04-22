@@ -1,18 +1,18 @@
 <?php
-define('DB_SERVER','localhost');
-define('DB_USER','root');
-define('DB_PASS','');
-define('DB_NAME','btc3205');
+	define('DB_SERVER', 'localhost');//local machine
+	define('DB_USER', 'root');//root user
+	define('DB_PASS','');//password not set
+	define('DB_NAME','btc3205');//DB name
 
-class DBConnector{
-public $conn;
-
-function _construct(){ //doubting this part
-  $this->conn = mysql_connect(DB_SERVER,DB_USER,DB_PASS) or die ("Error:".mysql_error());
-  mysql_select_db(DB_NAME,$this->conn);
-}
-  public function closeDatabase(){
-    mysql_close($this->conn);
-  }
-}
- ?>
+	class DBConnector{
+		public $conn;//We connect to the DB inside our class constructor so we can always cause a DB connection whenever an object is created
+		function __construct(){
+			$this->conn = new mysqli(DB_SERVER, DB_USER,DB_PASS) or die ("Error:" .mysql_error());
+			mysqli_select_db($this->conn,DB_NAME);
+		}
+		//Once done with DB reads, updates, deletes, this public function closes the connection
+		public function closeDatabase(){
+			mysqli_close($this->conn);
+		}
+	}
+?>

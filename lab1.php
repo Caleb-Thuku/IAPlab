@@ -1,8 +1,8 @@
 <?php
 include_once 'DBConnector.php';
 include_once 'user.php';
-$con = new DBConnector;
-
+//$conn = new DBConnector;
+//var_dump($conn);
 if(isset($_POST['btn_save'])){
   $first_name = $_POST['first_name'];
   $last_name = $_POST['last_name'];
@@ -41,7 +41,7 @@ if(isset($_POST['btn_save'])){
           <td><input type="text" name="city_name" placeholder="City"value=""></td>
         </tr>
         <tr>
-          <td> <input type="submit" name="btn-save" value="SAVE"></td>
+          <td> <button type="submit" name="btn_save">SAVE</button></td>
         </tr>
       </table>
     </form>
