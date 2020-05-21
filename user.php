@@ -1,6 +1,6 @@
 <?php
 	include "Crud.php";
-	include "DBConnector.php";
+	include_once "DBConnector.php";
 
 	class User implements Crud{
 		private $user_id;
@@ -31,13 +31,14 @@
 			$ln=$this->last_name;
 			$city=$this->city_name;
 			$conn =new DBConnector;
-			$result = mysqli_query($conn->conn,"INSERT INTO user(first_name,last_name,user_city) VALUES ('$fn','$ln','$city')") or die ("Error" .mysql_error());
-			return $result;
+			$res = mysqli_query($conn->conn,"INSERT INTO user(first_name,last_name,user_city) VALUES ('$fn','$ln','$city')") or die ("Error" .mysql_error());
+			return $res;
 		}
 
 		public function readAll(){
 			$conn =new DBConnector;
-      $query = mysqli_query($conn->conn,"SELECT * FROM user") or die ("Error" .mysql_error());
+
+			$query = mysqli_query($conn->conn,"SELECT * FROM user") or die ("Error" .mysql_error());
 			return $query;
 		}
 		public function readUnique(){
