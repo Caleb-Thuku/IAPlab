@@ -1,0 +1,25 @@
+Kindly note that whenever the page is refreshed, a new value is added to 
+the database.
+
+
+*******SOLUTION********
+The following lines of code were altered to resolve the
+duplication error
+
+1.)   if($res)
+        {
+        header("Location:lab1.php");
+        *...Rest...of...code...*
+         }
+
+2.)   <button type="submit" name="btn-save"
+      onclick="return Success()">
+
+
+3.)    <script type="text/javascript">
+          function Success()
+          {
+            alert("Your Record has successfully added")
+            return true;
+          }
+           </script>
